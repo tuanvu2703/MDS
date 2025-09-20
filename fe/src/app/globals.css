@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+html {
+  height: 100%;
+  background: transparent !important;
+}
+
+body {
+  background: transparent !important;
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Force remove any dark background */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#__next,
+[data-nextjs-scroll-focus-boundary] {
+  background: transparent !important;
+}
+
+/* Override any background từ theme */
+body::before {
+  display: none !important;
+}
+
+/* Styling cho text trên video background */
+.video-overlay-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+/* Đảm bảo video background không bị override */
+video[style*="z-index: -10"] {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  object-fit: cover !important;
+  z-index: -10 !important;
+  background: none !important;
+}
+
+/* Đảm bảo container của video cũng transparent */
+div[style*="z-index: 1"] {
+  background: transparent !important;
+}
+
+/* Force video to be visible */
+video {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* LOADING CSS */
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  overflow: hidden;
+}
+
+.loading-animation {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-top: 20px;
+}
+
+.loading-animation .dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: #e0e7ff;
+  border-radius: 50%;
+  transform-origin: 50px 0;
+  animation: orbit 3s infinite;
+}
+
+.loading-animation .dot:nth-child(1) {
+  background-color: #a78bfa;
+  animation-delay: 0s;
+}
+
+.loading-animation .dot:nth-child(2) {
+  background-color: #818cf8;
+  animation-delay: -1s;
+}
+
+.loading-animation .dot:nth-child(3) {
+  background-color: #6366f1;
+  animation-delay: -2s;
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(40px) rotate(0deg);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: rotate(180deg) translateX(40px) rotate(-180deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(40px) rotate(-360deg);
+    opacity: 0.3;
+  }
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://placehold.co/1920x1080/0d1117/c9d1d9?text=Space+Background') no-repeat center center/cover;
+  opacity: 0.3;
+  z-index: -1;
+  animation: moveBackground 60s linear infinite;
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 100% 100%;
+  }
+}
